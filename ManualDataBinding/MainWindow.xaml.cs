@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using ManualDataBinding.Data;
 namespace ManualDataBinding
 {
     /// <summary>
@@ -20,9 +20,45 @@ namespace ManualDataBinding
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Note note = new Note();
+
         public MainWindow()
         {
             InitializeComponent();
+            Editor.Note = note;
+        }
+
+        /// <summary>
+        /// event handler for new note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewNote(object sender, RoutedEventArgs e)
+        {
+            note = new Note();
+            Editor.Note = note;
+        }
+
+        /// <summary>
+        /// event handler for clear note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearNote(object sender, RoutedEventArgs e)
+        {
+            note.Body = "";
+        }
+
+        /// <summary>
+        /// event handler for mutate note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MutateNote(object sender, RoutedEventArgs e)
+        {
+            note.Title = "Hot Leaf Juice";
+            note.Body = "How could a member of my own family say something so horrible?";
         }
     }
 }
